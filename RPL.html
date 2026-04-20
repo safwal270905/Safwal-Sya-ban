@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Minuman Segar</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<style>
+body { font-family: 'Poppins', sans-serif; }
+.card:hover { transform: translateY(-8px); }
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 via-white to-purple-100">
+
+<!-- HEADER -->
+<header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-10 shadow-xl text-center
+  <h1 class="text-4xl font-bold">Toko Minuman Segar</h1>
+  <p class="mt-2 text-indigo-100">COD Area Pidie • Segar • Cepat • Murah</p>
+</header>
+
+<!-- PRODUK -->
+<section class="max-w-7xl mx-auto px-4 py-16">
+<h2 class="text-3xl font-bold text-center text-indigo-700 mb-12">Menu Favorit</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+<div class="card bg-white rounded-2xl shadow-xl overflow-hidden transition">
+  <div class="relative">
+    <span class="absolute bg-red-500 text-white px-3 py-1 text-xs rounded-br-lg">BEST SELLER</span>
+    <img src="https://storage.googleapis.com/a1aa/image/56256c75-0260-4be0-67fa-e43219e7646d.jpg"
+         class="w-full h-72 object-cover">
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold">Jus Jeruk</h3>
+    <p class="text-gray-500">Segar alami tanpa gula</p>
+    <p class="mt-2 font-bold text-indigo-600 text-lg">Rp15.000</p>
+    <button onclick="tambahKeKeranjang('Jus Jeruk',15000)"
+      class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
+      Tambah ke Keranjang
+    </button>
+  </div>
+</div>
+
+<div class="card bg-white rounded-2xl shadow-xl overflow-hidden transition">
+  <div class="relative">
+    <span class="absolute bg-green-500 text-white px-3 py-1 text-xs rounded-br-lg">FAVORIT</span>
+    <img src="https://storage.googleapis.com/a1aa/image/f581d142-4ba9-4883-5edf-5129fac7c176.jpg"
+         class="w-full h-72 object-cover">
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold">Es Kopi Susu</h3>
+    <p class="text-gray-500">Creamy dan nikmat</p>
+    <p class="mt-2 font-bold text-indigo-600 text-lg">Rp22.000</p>
+    <button onclick="tambahKeKeranjang('Es Kopi Susu',22000)"
+      class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
+      Tambah ke Keranjang
+    </button>
+  </div>
+</div>
+
+<div class="card bg-white rounded-2xl shadow-xl overflow-hidden transition">
+  <div class="relative">
+    <span class="absolute bg-yellow-500 text-white px-3 py-1 text-xs rounded-br-lg">BARU</span>
+    <img src="https://storage.googleapis.com/a1aa/image/a2fcd6f4-448c-4875-1b7d-2897f1784c9d.jpg"
+         class="w-full h-72 object-cover">
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold">Smoothie Mangga</h3>
+    <p class="text-gray-500">Buah asli segar</p>
+    <p class="mt-2 font-bold text-indigo-600 text-lg">Rp25.000</p>
+    <button onclick="tambahKeKeranjang('Smoothie Mangga',25000)"
+      class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">
+      Tambah ke Keranjang
+    </button>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- KERANJANG -->
+<section class="max-w-4xl mx-auto px-4 py-16">
+<div class="bg-white p-8 rounded-2xl shadow-2xl">
+
+<h2 class="text-2xl font-bold text-indigo-700 text-center mb-6">Keranjang</h2>
+
+<input id="nama" placeholder="Nama Anda" class="w-full p-3 border rounded-lg mb-3">
+<textarea id="alamat" placeholder="Alamat COD" class="w-full p-3 border rounded-lg mb-4"></textarea>
+
+<ul id="cartItems" class="space-y-2 mb-4"></ul>
+
+<p class="text-right font-bold text-lg">Total: <span id="cartTotal">Rp0</span></p>
+
+<button onclick="checkoutWA()"
+class="mt-4 w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600">
+Pesan via WhatsApp
+</button>
+
+</div>
+</section>
+
+<!-- MAP -->
+<section class="bg-indigo-700 text-white py-16 text-center">
+<h2 class="text-3xl font-bold mb-4">Lokasi Toko</h2>
+<p class="mb-6">Dayah Sinthop, Kecamatan Mila, Aceh</p>
+
+<iframe class="w-full max-w-4xl mx-auto h-80 rounded-xl"
+src="https://www.google.com/maps?q=dayah+sinthop+mila+aceh&output=embed"></iframe>
+</section>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/62895415666009"
+class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 flex items-center justify-center rounded-full text-2xl shadow-xl hover:bg-green-600">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+let keranjang = [];
+
+function tambahKeKeranjang(nama, harga){
+keranjang.push({nama, harga});
+render();
+alert(nama + " ditambahkan ke keranjang");
+}
+
+function render(){
+let list = document.getElementById("cartItems");
+let total = 0;
+list.innerHTML = "";
+
+keranjang.forEach((item,i)=>{
+total += item.harga;
+list.innerHTML += `
+<li class="flex justify-between border-b pb-2">
+${item.nama} - Rp${item.harga.toLocaleString('id-ID')}
+<button onclick="hapus(${i})" class="text-red-500">Hapus</button>
+</li>`;
+});
+
+document.getElementById("cartTotal").innerText = "Rp"+total.toLocaleString('id-ID');
+}
+
+function hapus(i){
+keranjang.splice(i,1);
+render();
+}
+
+function checkoutWA(){
+let nama = document.getElementById("nama").value;
+let alamat = document.getElementById("alamat").value;
+
+if(!nama || !alamat){
+alert("Isi nama dan alamat dulu");
+return;
+}
+
+if(keranjang.length==0){
+alert("Keranjang kosong");
+return;
+}
+
+let pesan = Halo, saya ingin memesan minuman berikut:%0A%0A;
+pesan += Detail Pesanan:%0A;
+
+let total = 0;
+
+keranjang.forEach(item=>{
+pesan += - ${item.nama}%0A;
+total += item.harga;
+});
+
+pesan += %0ANama: ${nama};
+pesan += %0AAlamat: ${alamat}%0A;
+
+pesan += %0ATotal Pembayaran: Rp${total.toLocaleString('id-ID')};
+pesan += %0A%0ATerima kasih;
+
+window.open(https://wa.me/62895415666009?text=${pesan});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Safwal Sya'ban</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Share Tech Mono", monospace;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0a0f2c, #1a0033, #001f3f);
+        color: white;
+        overflow-x: hidden;
+      }
+
+      /* BACKGROUND */
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 35px;
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #00cfff;
+        box-shadow: 0 0 40px #00cfff;
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 3px solid #00cfff;
+        object-fit: cover;
+        box-shadow: 0 0 30px #00cfff;
+        transition: 0.4s;
+      }
+      .profile-img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 60px #00cfff;
+      }
+
+      h1 {
+        margin-top: 15px;
+        font-size: 34px;
+        text-shadow: 0 0 15px #00cfff;
+      }
+
+      .subtitle {
+        opacity: 0.8;
+        margin-bottom: 10px;
+      }
+      .info p {
+        margin: 5px 0;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 25px;
+        border-radius: 5px;
+        border: 1px solid #00cfff;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background: #00cfff;
+        color: black;
+        box-shadow: 0 0 20px #00cfff;
+      }
+
+      .section {
+        margin-top: 35px;
+        text-align: left;
+      }
+      .section h2 {
+        margin-bottom: 10px;
+        border-left: 3px solid #00cfff;
+        padding-left: 10px;
+      }
+
+      .card {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #00cfff;
+        box-shadow: 0 0 20px #00cfff;
+        transition: 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px #00cfff;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        border-left: 2px solid #00cfff;
+        padding-left: 15px;
+      }
+      .timeline div {
+        margin-bottom: 15px;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: 0.5s;
+      }
+      .timeline div.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* PROGRESS */
+      .bar {
+        height: 8px;
+        background: #111;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .fill {
+        height: 100%;
+        animation: load 2s ease;
+      }
+
+      .sd-bar {
+        background: linear-gradient(to bottom, red 50%, white 50%);
+        background-size: 100% 200%;
+        animation: move 2s linear infinite;
+      }
+      .smp-bar {
+        background: linear-gradient(to bottom, blue 50%, white 50%);
+        background-size: 100% 200%;
+        animation: move 2s linear infinite;
+      }
+      .sma-bar {
+        background: linear-gradient(to bottom, gray 50%, white 50%);
+        background-size: 100% 200%;
+        animation: move 2s linear infinite;
+      }
+      .kuliah-bar {
+        background: linear-gradient(
+          to bottom,
+          yellow,
+          orange,
+          purple,
+          magenta,
+          cyan
+        );
+        background-size: 100% 300%;
+        animation: move2 3s linear infinite;
+      }
+
+      @keyframes move {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 0 100%;
+        }
+      }
+      @keyframes move2 {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 0 100%;
+        }
+      }
+
+      @keyframes load {
+        from {
+          width: 0;
+        }
+      }
+
+      .footer {
+        margin-top: 20px;
+        text-align: center;
+        opacity: 0.9;
+      }
+
+      /* ANIMASI TEXT */
+      .fade-text span {
+        display: block;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeUp 0.6s forwards;
+      }
+      .fade-text span:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .fade-text span:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .fade-text span:nth-child(4) {
+        animation-delay: 0.9s;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* HIGHLIGHT */
+      .highlight {
+        color: #00cfff;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="matrix"></canvas>
+
+    <div class="container">
+      <img src="tut.jpeg" class="profile-img" />
+
+      <h1>Safwal Sya'ban</h1>
+      <p class="subtitle">Mahasiswa Teknik Informatika</p>
+
+      <div class="info">
+        <p>📍Kulu, Mila, Aceh, Indonesia</p>
+        <p>📧 safwal270905@gmail.com</p>
+        <p>📞 0812151395357</p>
+      </div>
+
+      <a href="https://wa.me/62812151395357" class="btn" target="_blank">
+        ▶ CONNECT
+      </a>
+
+      <!-- INFORMASI PRIBADI -->
+      <div class="section">
+        <h2>Informasi Pribadi</h2>
+        <div class="card fade-text">
+          <span>Tanggal Lahir: 27 September 2005</span>
+          <span>Status: Mahasiswa</span>
+          <span>Kuliah: Universitas Jabal Ghafur</span>
+          <span>Jurusan: Teknik Informatika</span>
+        </div>
+      </div>
+
+      <!-- PROFIL -->
+      <div class="section">
+        <h2>Profil</h2>
+        <div class="card">
+          Mahasiswa IT yang fokus pada
+          <span class="highlight">web development</span>,
+          <span class="highlight">kreativitas</span>, dan membangun
+          <span class="highlight">fondasi teknologi yang kuat</span>.
+        </div>
+      </div>
+
+      <!-- PENDIDIKAN -->
+      <div class="section">
+        <h2>Pendidikan</h2>
+        <div class="timeline">
+          <div>2024 - Sekarang | Universitas Jabal Ghafur</div>
+
+          <div>
+            2021 - 2024 | SMA Negeri 1 Mila<br />
+            <small
+              >Meningkatkan kesiapan akademik menuju dunia perkuliahan</small
+            >
+          </div>
+
+          <div>
+            2018 - 2021 | SMP Negeri 1 Mila<br />
+            <small
+              >Membangun <span class="highlight">kreativitas</span> dan
+              kedisiplinan</small
+            >
+          </div>
+
+          <div>
+            2012 - 2018 | SD Negeri 1 Andeue<br />
+            <small
+              >Dasar pembentukan <span class="highlight">karakter</span> dan
+              kemampuan belajar</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="section">
+        <h2>Progress</h2>
+
+        <p>SD</p>
+        <div class="bar">
+          <div class="fill sd-bar" style="width: 100%"></div>
+        </div>
+
+        <p>SMP</p>
+        <div class="bar">
+          <div class="fill smp-bar" style="width: 100%"></div>
+        </div>
+
+        <p>SMA</p>
+        <div class="bar">
+          <div class="fill sma-bar" style="width: 100%"></div>
+        </div>
+
+        <p>Kuliah</p>
+        <div class="bar">
+          <div class="fill kuliah-bar" style="width: 70%"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <a href="RPL.html" style="text-decoration: none; color: white">
+          <div class="card">
+            <b>🛒 Web Toko Minuman Segar</b><br />
+            Membuat sistem keranjang belanja sederhana menggunakan JavaScript.
+            <br /><br />
+            <span style="opacity: 0.7">Klik untuk melihat project →</span>
+          </div>
+        </a>
+
+        <br />
+
+        <a href="gass.html" style="text-decoration: none; color: white">
+          <div class="card">
+            <b>🛒 Web pangkalan gas</b><br />
+            Membuat sistem keranjang belanja sederhana menggunakan JavaScript.
+            <br /><br />
+            <span style="opacity: 0.7">Klik untuk melihat project →</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="footer">✨ Dibuat oleh Safwal Sya'ban</div>
+    </div>
+
+    <script>
+      // MATRIX EFFECT (warna biru)
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+
+      const letters = "01";
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+
+      const drops = [];
+      for (let x = 0; x < columns; x++) drops[x] = 1;
+
+      function draw() {
+        ctx.fillStyle = "rgba(0,0,0,0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00cfff";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 33);
+
+      // ANIMASI TIMELINE
+      const items = document.querySelectorAll(".timeline div");
+      window.addEventListener("scroll", () => {
+        items.forEach((el) => {
+          const top = el.getBoundingClientRect().top;
+          if (top < window.innerHeight - 50) {
+            el.classList.add("show");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
